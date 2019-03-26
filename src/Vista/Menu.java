@@ -45,9 +45,9 @@ public class Menu extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Cambio!"));
 
-        jButton1.setText("jButton1");
+        jButton1.setText("SALUDAR");
 
-        jButton2.setText("jButton2");
+        jButton2.setText("DESPEDIR");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
