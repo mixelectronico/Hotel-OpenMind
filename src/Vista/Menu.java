@@ -41,7 +41,7 @@ public class Menu extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel4.setText("OPEN MIND");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("holo"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Cambio!"));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
