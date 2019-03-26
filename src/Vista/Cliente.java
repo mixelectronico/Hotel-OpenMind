@@ -119,6 +119,8 @@ public class Cliente extends javax.swing.JFrame {
             }
         });
 
+        jcal_fecha.setDateFormatString("yyyy-MM-dd");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(

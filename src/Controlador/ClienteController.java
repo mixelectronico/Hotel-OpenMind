@@ -20,5 +20,6 @@ public class ClienteController {
         d_FECHANAC = m_FECHANAC;
         
         cm.InsertarCliente(d_RUT, d_DV, d_NOMBRES, d_APELLIDOP, d_APELLIDOM, d_SEXO, d_NACIONALIDAD, d_FECHANAC);
+        //parametros: 1,2,3,4,5,6,7,8
     }  
 }
