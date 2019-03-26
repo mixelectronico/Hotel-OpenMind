@@ -5,9 +5,9 @@ import java.sql.SQLException;
 import modelo.Database;
 import java.util.Date;
 
-public class ClienteModel extends Database{
+public class SQLCliente extends Database{
     
-    public ClienteModel(){}
+    public SQLCliente(){}
 
     //parametros: 1,2,3,4,5,6,7,8
     public  void InsertarCliente(String d_RUT, String d_DV, String d_NOMBRES, String d_APELLIDOP, String d_APELLIDOM, String d_SEXO, String d_NACIONALIDAD, Date d_FECHANAC) {

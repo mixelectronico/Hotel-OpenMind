@@ -1,12 +1,12 @@
 
 package Controlador;
 
-import Modelo.ClienteModel;
+import Modelo.SQLCliente;
 import java.util.Date;
 
 public class ClienteController {
     //clase nombre_variable
-    ClienteModel  cm = new ClienteModel();
+    SQLCliente  cm = new SQLCliente();
 
     public void InsertarCliente(String m_RUT, String m_DV, String m_NOMBRES, String m_APELLIDOP, String m_APELLIDOM, String m_SEXO, String m_NACIONALIDAD, Date m_FECHANAC) {
         String d_RUT = m_RUT;
