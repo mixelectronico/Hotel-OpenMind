@@ -151,7 +151,7 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_ClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ClienteActionPerformed
-        new Cliente().setVisible(true);
+        new Vista_Cliente().setVisible(true);
     }//GEN-LAST:event_btn_ClienteActionPerformed
 
     private void btn_ReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ReservaActionPerformed

@@ -1,13 +1,14 @@
 package Vista;
 import Controlador.ClienteController;
+import Modelo.Modelo_Cliente;
+import Modelo.SQLCliente;
 import java.awt.Color;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
-public class Cliente extends javax.swing.JFrame {
-    ClienteController ControlCliente = new ClienteController();
+public class Vista_Cliente extends javax.swing.JFrame {
 
-    public Cliente() {
+    public Vista_Cliente() {
         initComponents();
     }
     @SuppressWarnings("unchecked")
@@ -30,7 +31,7 @@ public class Cliente extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         cbx_sexo = new javax.swing.JComboBox<>();
         jLabel17 = new javax.swing.JLabel();
-        jTextField14 = new javax.swing.JTextField();
+        txt_nacionalidad = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jcal_fecha = new com.toedter.calendar.JDateChooser();
 
@@ -106,9 +107,9 @@ public class Cliente extends javax.swing.JFrame {
 
         jLabel17.setText("Nacionalidad:");
 
-        jTextField14.addKeyListener(new java.awt.event.KeyAdapter() {
+        txt_nacionalidad.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField14KeyTyped(evt);
+                txt_nacionalidadKeyTyped(evt);
             }
         });
 
@@ -149,7 +150,7 @@ public class Cliente extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(cbx_sexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_nacionalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(txt_apellidoM, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(txt_apellidoP, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -199,7 +200,7 @@ public class Cliente extends javax.swing.JFrame {
                 .addGap(144, 144, 144)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17)
-                    .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_nacionalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
@@ -224,36 +225,41 @@ public class Cliente extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         //Obtengo fecha desde el panel y convierto el formato a fecha MySQL.
+        Modelo_Cliente modcli = new Modelo_Cliente();
+        SQLCliente SQLcli = new SQLCliente();
+        
         Date date = jcal_fecha.getDate();
         long d = date.getTime();
         java.sql.Date jcal_fechaNac = new java.sql.Date(d);
         
         //Declaro variables y extraigo información del formulario.
-        String m_RUT = txt_rut.getText();
-        String m_DV = txt_dv.getText();
-        String m_NOMBRES = txt_nombres.getText();
-        String m_APELLIDOP = txt_apellidoP.getText();
-        String m_APELLIDOM = txt_apellidoM.getText();
-        String m_SEXO = null;
-        Date m_FECHANAC = jcal_fechaNac;
-        String m_NACIONALIDAD = jTextField14.getText();
+        modcli.setD_RUT(txt_rut.getText());
+        modcli.setD_DV(txt_dv.getText());
+        modcli.setD_NOMBRES(txt_nombres.getText());
+        modcli.setD_APELLIDOP(txt_apellidoP.getText()); 
+        modcli.setD_APELLIDOM(txt_apellidoM.getText());
+        modcli.setD_FECHANAC(jcal_fechaNac); 
+        modcli.setD_NACIONALIDAD(txt_nacionalidad.getText());
         boolean flag_SEXO = false;
         
+        //Seleccion del sexo y validacion de la selección.
         if(cbx_sexo.getSelectedItem().equals("Masculino")){
-            m_SEXO = "M";
+            modcli.setD_SEXO("M");
             flag_SEXO = true;
         }else{
             if(cbx_sexo.getSelectedItem().equals("Femenino")){
-                m_SEXO = "F";
+                modcli.setD_SEXO("F");
                 flag_SEXO = true;
             }else{
                 JOptionPane.showMessageDialog(null, "Por favor selecciona el SEXO");
             }
         }
-        if(Validacion(m_RUT,m_DV,m_NOMBRES,m_APELLIDOP,m_APELLIDOM,m_FECHANAC,m_NACIONALIDAD)){
+        
+        //Confirmación de que los campos han sido utilizados.
+        if(Validacion(txt_rut.getText(),txt_dv.getText(),txt_nombres.getText(),txt_apellidoP.getText(),txt_apellidoM.getText(),jcal_fechaNac,txt_nacionalidad.getText())){
             JOptionPane.showMessageDialog(null, "Cajas de texto validadas");
         }
-        ControlCliente.InsertarCliente(m_RUT,m_DV,m_NOMBRES,m_APELLIDOP,m_APELLIDOM,m_SEXO,m_NACIONALIDAD,m_FECHANAC);
+        SQLcli.InsertarCliente(modcli);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void txt_rutKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_rutKeyTyped
@@ -281,10 +287,10 @@ public class Cliente extends javax.swing.JFrame {
         if((c<'a' || c>'z')&&(c<'A' || c>'Z')) evt.consume();
     }//GEN-LAST:event_txt_apellidoMKeyTyped
 
-    private void jTextField14KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField14KeyTyped
+    private void txt_nacionalidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nacionalidadKeyTyped
         char c = evt.getKeyChar();
         if((c<'a' || c>'z')&&(c<'A' || c>'Z')) evt.consume();
-    }//GEN-LAST:event_jTextField14KeyTyped
+    }//GEN-LAST:event_txt_nacionalidadKeyTyped
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -300,14 +306,38 @@ public class Cliente extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Vista_Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Vista_Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Vista_Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Vista_Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -320,7 +350,7 @@ public class Cliente extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Cliente().setVisible(true);
+                new Vista_Cliente().setVisible(true);
             }
         });
     }
@@ -338,11 +368,11 @@ public class Cliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField14;
     private com.toedter.calendar.JDateChooser jcal_fecha;
     private javax.swing.JTextField txt_apellidoM;
     private javax.swing.JTextField txt_apellidoP;
     private javax.swing.JTextField txt_dv;
+    private javax.swing.JTextField txt_nacionalidad;
     private javax.swing.JTextField txt_nombres;
     private javax.swing.JTextField txt_rut;
     // End of variables declaration//GEN-END:variables
@@ -380,10 +410,10 @@ public class Cliente extends javax.swing.JFrame {
             txt_apellidoM.setBackground(Color.white);
         }
         if(m_NACIONALIDAD.equals("")){
-            jTextField14.setBackground(Color.red);
+            txt_nacionalidad.setBackground(Color.red);
             flag = false;
         }else{
-            jTextField14.setBackground(Color.white);
+            txt_nacionalidad.setBackground(Color.white);
         }
         if(flag==false){
             JOptionPane.showMessageDialog(null, "Faltan datos");

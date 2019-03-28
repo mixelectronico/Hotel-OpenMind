@@ -3,7 +3,7 @@ package Modelo;
 
 import java.util.Date;
 
-public class Cliente {
+public class Modelo_Cliente {
     String d_RUT;
     String d_DV;
     String d_NOMBRES;

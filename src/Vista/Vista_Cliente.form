@@ -50,7 +50,7 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="cbx_sexo" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField14" min="-2" pref="103" max="-2" attributes="0"/>
+                                  <Component id="txt_nacionalidad" min="-2" pref="103" max="-2" attributes="0"/>
                                   <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                                       <Component id="txt_apellidoM" alignment="1" min="-2" pref="141" max="-2" attributes="0"/>
                                       <Component id="txt_apellidoP" alignment="1" min="-2" pref="141" max="-2" attributes="0"/>
@@ -117,7 +117,7 @@
               <EmptySpace min="-2" pref="144" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel17" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField14" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txt_nacionalidad" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -231,9 +231,9 @@
         <Property name="text" type="java.lang.String" value="Nacionalidad:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField14">
+    <Component class="javax.swing.JTextField" name="txt_nacionalidad">
       <Events>
-        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextField14KeyTyped"/>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_nacionalidadKeyTyped"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">
