@@ -242,6 +242,8 @@ public class Vista_Cliente extends javax.swing.JFrame {
         modcli.setD_NACIONALIDAD(txt_nacionalidad.getText());
         boolean flag_SEXO = false;
         
+        System.out.print(modcli.getD_FECHANAC().toString());
+        
         //Seleccion del sexo y validacion de la selección.
         if(cbx_sexo.getSelectedItem().equals("Masculino")){
             modcli.setD_SEXO("M");
