@@ -1,5 +1,4 @@
 package Vista;
-import Controlador.SQLCliente;
 import Modelo.Modelo_Cliente;
 import Controlador.SQLCliente;
 import java.awt.Color;

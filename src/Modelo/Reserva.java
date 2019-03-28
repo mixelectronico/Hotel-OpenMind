@@ -38,12 +38,5 @@ public class Reserva {
 
     public void setCONT_RES(int CONT_RES) {
         this.CONT_RES = CONT_RES;
-    }
-                   
-    
-            
-    
-    
-    
-    
+    }   
 }
