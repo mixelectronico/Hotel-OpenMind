@@ -1,7 +1,7 @@
 package Vista;
-import Controlador.ClienteController;
+import Controlador.SQLCliente;
 import Modelo.Modelo_Cliente;
-import Modelo.SQLCliente;
+import Controlador.SQLCliente;
 import java.awt.Color;
 import java.util.Date;
 import javax.swing.JOptionPane;
