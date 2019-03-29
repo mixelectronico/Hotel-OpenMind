@@ -1,13 +1,13 @@
 package Vista;
-import Modelo.Modelo_Cliente;
-import Controlador.SQLCliente;
+import Modelo.Modelo_Huesped;
+import Controlador.SQL_Huesped;
 import java.awt.Color;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
-public class Vista_Cliente extends javax.swing.JFrame {
+public class Vista_Huesped extends javax.swing.JFrame {
 
-    public Vista_Cliente() {
+    public Vista_Huesped() {
         initComponents();
     }
     @SuppressWarnings("unchecked")
@@ -224,32 +224,30 @@ public class Vista_Cliente extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         //Obtengo fecha desde el panel y convierto el formato a fecha MySQL.
-        Modelo_Cliente modcli = new Modelo_Cliente();
-        SQLCliente SQLcli = new SQLCliente();
+        Modelo_Huesped modcli = new Modelo_Huesped();
+        SQL_Huesped SQLcli = new SQL_Huesped();
         
         Date date = jcal_fecha.getDate();
         long d = date.getTime();
         java.sql.Date jcal_fechaNac = new java.sql.Date(d);
         
         //Declaro variables y extraigo información del formulario.
-        modcli.setD_RUT(txt_rut.getText());
-        modcli.setD_DV(txt_dv.getText());
-        modcli.setD_NOMBRES(txt_nombres.getText());
-        modcli.setD_APELLIDOP(txt_apellidoP.getText()); 
-        modcli.setD_APELLIDOM(txt_apellidoM.getText());
-        modcli.setD_FECHANAC(jcal_fechaNac); 
-        modcli.setD_NACIONALIDAD(txt_nacionalidad.getText());
+        modcli.setRUT(txt_rut.getText());
+        modcli.setDIGITOV(txt_dv.getText());
+        modcli.setNOMBRE(txt_nombres.getText());
+        modcli.setAPELLIDOP(txt_apellidoP.getText()); 
+        modcli.setAPELLIDOM(txt_apellidoM.getText());
+        modcli.setFECHANAC(jcal_fechaNac); 
+        modcli.setNACIONALIDAD(txt_nacionalidad.getText());
         boolean flag_SEXO = false;
-        
-        System.out.print(modcli.getD_FECHANAC().toString());
         
         //Seleccion del sexo y validacion de la selección.
         if(cbx_sexo.getSelectedItem().equals("Masculino")){
-            modcli.setD_SEXO("M");
+            modcli.setSEXO("M");
             flag_SEXO = true;
         }else{
             if(cbx_sexo.getSelectedItem().equals("Femenino")){
-                modcli.setD_SEXO("F");
+                modcli.setSEXO("F");
                 flag_SEXO = true;
             }else{
                 JOptionPane.showMessageDialog(null, "Por favor selecciona el SEXO");
@@ -307,14 +305,46 @@ public class Vista_Cliente extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Vista_Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Vista_Huesped.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Vista_Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Vista_Huesped.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Vista_Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Vista_Huesped.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Vista_Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Vista_Huesped.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -351,7 +381,7 @@ public class Vista_Cliente extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Vista_Cliente().setVisible(true);
+                new Vista_Huesped().setVisible(true);
             }
         });
     }
