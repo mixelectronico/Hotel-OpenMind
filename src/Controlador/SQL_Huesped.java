@@ -42,4 +42,36 @@ public class SQL_Huesped extends Database{
             return false;
         }
     }
+    
+    public boolean mostrarCliente(String RUT) {
+         Modelo_Huesped modcli = new Modelo_Huesped();
+         try {
+         PreparedStatement pstm;
+         pstm = this.getConexion().prepareStatement( "select RUT_CLIENTE,VERIF,NOMBRES,AP_PATERNO,AP_MATERNO,SEXO,FECHA_NAC,NACIONALIDAD from cliente where RUT_CLIENTE=?;");   
+         pstm.setString(1, RUT);
+         ResultSet res = pstm.executeQuery();
+         
+         if(res.next()){
+             modcli.setRUT(res.getString("RUT_CLIENTE"));
+             modcli.setDIGITOV(res.getString("VERIF"));
+             modcli.setNOMBRE(res.getString("NOMBRES"));
+             modcli.setAPELLIDOP(res.getString("AP_PATERNO"));
+             modcli.setAPELLIDOM(res.getString("AP_MATERNO"));
+             modcli.setSEXO(res.getString("SEXO"));
+             modcli.setFECHANAC(res.getDate("FECHA_NAC"));
+             modcli.setNACIONALIDAD(res.getString("NACIONALIDAD"));
+             res.close();
+             return true;
+         }
+         
+        } catch (Exception e) {
+            e.printStackTrace();  
+            System.out.println(e);
+            return false;
+        } 
+        return false;
+    } 
+
 }
+    
+

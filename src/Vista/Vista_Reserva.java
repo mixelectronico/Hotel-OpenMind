@@ -1,10 +1,15 @@
 
 package Vista;
 
+import Controlador.SQL_Huesped;
+import Modelo.Modelo_Huesped;
+import javax.swing.JOptionPane;
+
 public class Vista_Reserva extends javax.swing.JFrame {
 
     public Vista_Reserva() {
         initComponents();
+        bloquearTexto();
     }
 
     @SuppressWarnings("unchecked")
@@ -20,7 +25,7 @@ public class Vista_Reserva extends javax.swing.JFrame {
         txtverif = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         txtidreserva = new javax.swing.JTextField();
-        jPanel2 = new javax.swing.JPanel();
+        pnl_formulario = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         combohabit = new javax.swing.JComboBox<>();
         combocantpasaj = new javax.swing.JComboBox<>();
@@ -29,14 +34,14 @@ public class Vista_Reserva extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         btnGuardar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
+        pnl_mostrar = new javax.swing.JPanel();
+        lbl_nombre = new javax.swing.JLabel();
+        lbl_apaterno = new javax.swing.JLabel();
+        lbl_amaterno = new javax.swing.JLabel();
+        lbl_rut = new javax.swing.JLabel();
+        lbl_sexo = new javax.swing.JLabel();
+        lbl_fechanac = new javax.swing.JLabel();
+        lbl_nacionalidad = new javax.swing.JLabel();
         lbl_MostrarNombre = new javax.swing.JLabel();
         lbl_MostrarApellidoP = new javax.swing.JLabel();
         lbl_MostrarApellidoM = new javax.swing.JLabel();
@@ -65,6 +70,11 @@ public class Vista_Reserva extends javax.swing.JFrame {
         });
 
         jButton1.setText("Validar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -104,7 +114,7 @@ public class Vista_Reserva extends javax.swing.JFrame {
             }
         });
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Información Reserva"));
+        pnl_formulario.setBorder(javax.swing.BorderFactory.createTitledBorder("Información Reserva"));
 
         jLabel5.setText("Habitación:");
 
@@ -147,72 +157,72 @@ public class Vista_Reserva extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnl_formularioLayout = new javax.swing.GroupLayout(pnl_formulario);
+        pnl_formulario.setLayout(pnl_formularioLayout);
+        pnl_formularioLayout.setHorizontalGroup(
+            pnl_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_formularioLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(pnl_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnl_formularioLayout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(combocantpasaj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_formularioLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(pnl_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnGuardar)
                             .addComponent(jLabel11)
                             .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pnl_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnl_formularioLayout.createSequentialGroup()
+                                .addGroup(pnl_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(combohabit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(combotpoocup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_formularioLayout.createSequentialGroup()
                                 .addComponent(btnCancelar)
                                 .addContainerGap())))))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        pnl_formularioLayout.setVerticalGroup(
+            pnl_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_formularioLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnl_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(combohabit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnl_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(combocantpasaj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(4, 4, 4)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnl_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(combotpoocup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnl_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardar)
                     .addComponent(btnCancelar))
                 .addContainerGap(39, Short.MAX_VALUE))
         );
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos del titular"));
+        pnl_mostrar.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos del titular"));
 
-        jLabel1.setText("Nombre :");
+        lbl_nombre.setText("Nombre :");
 
-        jLabel3.setText("Apellido Paterno :");
+        lbl_apaterno.setText("Apellido Paterno :");
 
-        jLabel6.setText("Apellido Materno :");
+        lbl_amaterno.setText("Apellido Materno :");
 
-        jLabel10.setText("RUT :");
+        lbl_rut.setText("RUT :");
 
-        jLabel12.setText("Sexo :");
+        lbl_sexo.setText("Sexo :");
 
-        jLabel13.setText("Fecha de Nacimiento :");
+        lbl_fechanac.setText("Fecha de Nacimiento :");
 
-        jLabel14.setText("Nacionalidad :");
+        lbl_nacionalidad.setText("Nacionalidad :");
 
         lbl_MostrarNombre.setText(" ");
 
@@ -228,22 +238,22 @@ public class Vista_Reserva extends javax.swing.JFrame {
 
         lbl_MostrarNacionalidad.setText(" ");
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnl_mostrarLayout = new javax.swing.GroupLayout(pnl_mostrar);
+        pnl_mostrar.setLayout(pnl_mostrarLayout);
+        pnl_mostrarLayout.setHorizontalGroup(
+            pnl_mostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_mostrarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGroup(pnl_mostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbl_nacionalidad, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lbl_fechanac, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lbl_sexo, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lbl_rut, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lbl_amaterno, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lbl_apaterno, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lbl_nombre, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnl_mostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbl_MostrarApellidoP, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
                     .addComponent(lbl_MostrarNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbl_MostrarRUT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -253,36 +263,36 @@ public class Vista_Reserva extends javax.swing.JFrame {
                     .addComponent(lbl_MostrarSexo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        pnl_mostrarLayout.setVerticalGroup(
+            pnl_mostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_mostrarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                .addGroup(pnl_mostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_nombre)
                     .addComponent(lbl_MostrarNombre))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                .addGroup(pnl_mostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_apaterno)
                     .addComponent(lbl_MostrarApellidoP))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
+                .addGroup(pnl_mostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_amaterno)
                     .addComponent(lbl_MostrarApellidoM))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
+                .addGroup(pnl_mostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_rut)
                     .addComponent(lbl_MostrarRUT))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
+                .addGroup(pnl_mostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_sexo)
                     .addComponent(lbl_MostrarSexo))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
+                .addGroup(pnl_mostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_fechanac)
                     .addComponent(lbl_MostrarFechaNacimiento))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
+                .addGroup(pnl_mostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_nacionalidad)
                     .addComponent(lbl_MostrarNacionalidad))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -294,20 +304,15 @@ public class Vista_Reserva extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel2)))
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(pnl_formulario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtidreserva, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(pnl_mostrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(80, 80, 80)
                         .addComponent(jLabel8)))
@@ -323,8 +328,8 @@ public class Vista_Reserva extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(pnl_formulario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pnl_mostrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -363,6 +368,33 @@ public class Vista_Reserva extends javax.swing.JFrame {
     private void txtidreservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidreservaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtidreservaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        SQL_Huesped SQLCLI = new SQL_Huesped();
+        Modelo_Huesped modcli = new Modelo_Huesped();
+        
+        if(SQLCLI.verificarRUT(txtrut.getText())){
+            habilitarTexto();
+            SQLCLI.mostrarCliente(txtrut.getText());
+            lbl_MostrarNombre.setText(modcli.getNOMBRE());
+            lbl_MostrarApellidoP.setText(modcli.getAPELLIDOP());
+            lbl_MostrarApellidoM.setText(modcli.getAPELLIDOM());
+            lbl_MostrarRUT.setText(modcli.getRUT()+"-"+modcli.getDIGITOV());
+            if(modcli.getSEXO().equals("F")){
+                lbl_MostrarSexo.setText("Femenino");
+            }
+            if(modcli.getSEXO().equals("M")){
+                lbl_MostrarSexo.setText("Masculino");
+            }else{
+                lbl_MostrarSexo.setText("No Definido");
+            }
+            lbl_MostrarFechaNacimiento.setText(modcli.getFECHANAC().toString());
+            lbl_MostrarNacionalidad.setText(modcli.getNACIONALIDAD());
+        }else{
+            
+        } 
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -469,23 +501,14 @@ public class Vista_Reserva extends javax.swing.JFrame {
     public javax.swing.JComboBox<String> combohabit;
     public javax.swing.JComboBox<String> combotpoocup;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lbl_MostrarApellidoM;
     private javax.swing.JLabel lbl_MostrarApellidoP;
     private javax.swing.JLabel lbl_MostrarFechaNacimiento;
@@ -493,10 +516,52 @@ public class Vista_Reserva extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_MostrarNombre;
     private javax.swing.JLabel lbl_MostrarRUT;
     private javax.swing.JLabel lbl_MostrarSexo;
+    private javax.swing.JLabel lbl_amaterno;
+    private javax.swing.JLabel lbl_apaterno;
+    private javax.swing.JLabel lbl_fechanac;
+    private javax.swing.JLabel lbl_nacionalidad;
+    private javax.swing.JLabel lbl_nombre;
+    private javax.swing.JLabel lbl_rut;
+    private javax.swing.JLabel lbl_sexo;
+    private javax.swing.JPanel pnl_formulario;
+    private javax.swing.JPanel pnl_mostrar;
     public javax.swing.JTextField txtidreserva;
     public javax.swing.JTextField txtrut;
     private javax.swing.JTextField txtverif;
     // End of variables declaration//GEN-END:variables
 
+public void bloquearTexto(){
+    pnl_mostrar.setEnabled(false);
+    lbl_nombre.setEnabled(false);
+    lbl_apaterno.setEnabled(false);
+    lbl_amaterno.setEnabled(false);
+    lbl_rut.setEnabled(false);
+    lbl_fechanac.setEnabled(false);
+    lbl_nacionalidad.setEnabled(false);
+    lbl_MostrarNombre.setEnabled(false);
+    lbl_MostrarApellidoP.setEnabled(false);
+    lbl_MostrarApellidoM.setEnabled(false);
+    lbl_MostrarRUT.setEnabled(false);
+    lbl_MostrarSexo.setEnabled(false);
+    lbl_MostrarFechaNacimiento.setEnabled(false);
+    lbl_MostrarNacionalidad.setEnabled(false);
+}
+
+public void habilitarTexto(){
+    pnl_mostrar.setEnabled(true);
+    lbl_nombre.setEnabled(true);
+    lbl_apaterno.setEnabled(true);
+    lbl_amaterno.setEnabled(true);
+    lbl_rut.setEnabled(true);
+    lbl_fechanac.setEnabled(true);
+    lbl_nacionalidad.setEnabled(true);
+    lbl_MostrarNombre.setEnabled(true);
+    lbl_MostrarApellidoP.setEnabled(true);
+    lbl_MostrarApellidoM.setEnabled(true);
+    lbl_MostrarRUT.setEnabled(true);
+    lbl_MostrarSexo.setEnabled(true);
+    lbl_MostrarFechaNacimiento.setEnabled(true);
+    lbl_MostrarNacionalidad.setEnabled(true);
+}
 
 }
