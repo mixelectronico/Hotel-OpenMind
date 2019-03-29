@@ -258,7 +258,11 @@ public class Vista_Huesped extends javax.swing.JFrame {
         if(Validacion(txt_rut.getText(),txt_dv.getText(),txt_nombres.getText(),txt_apellidoP.getText(),txt_apellidoM.getText(),jcal_fechaNac,txt_nacionalidad.getText())){
             JOptionPane.showMessageDialog(null, "Cajas de texto validadas");
         }
-        SQLcli.InsertarCliente(modcli);
+        if(SQLcli.verificarRUT(txt_rut.getText())){
+            JOptionPane.showMessageDialog(null, "El rut ya existe en la base de datos.");
+        }else{
+            SQLcli.InsertarCliente(modcli);
+        } 
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void txt_rutKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_rutKeyTyped
@@ -299,7 +303,7 @@ public class Vista_Huesped extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
