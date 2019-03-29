@@ -497,4 +497,6 @@ public class Vista_Reserva extends javax.swing.JFrame {
     public javax.swing.JTextField txtrut;
     private javax.swing.JTextField txtverif;
     // End of variables declaration//GEN-END:variables
+
+
 }
