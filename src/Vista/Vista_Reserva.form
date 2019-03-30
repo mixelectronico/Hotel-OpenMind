@@ -358,6 +358,7 @@
             <TitledBorder title="Datos del titular"/>
           </Border>
         </Property>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
 
       <Layout>
@@ -402,11 +403,11 @@
                       <Component id="lbl_MostrarApellidoP" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lbl_amaterno" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lbl_MostrarApellidoM" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="lbl_amaterno" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbl_MostrarApellidoM" alignment="1" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lbl_rut" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lbl_MostrarRUT" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -435,36 +436,43 @@
         <Component class="javax.swing.JLabel" name="lbl_nombre">
           <Properties>
             <Property name="text" type="java.lang.String" value="Nombre :"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lbl_apaterno">
           <Properties>
             <Property name="text" type="java.lang.String" value="Apellido Paterno :"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lbl_amaterno">
           <Properties>
             <Property name="text" type="java.lang.String" value="Apellido Materno :"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lbl_rut">
           <Properties>
             <Property name="text" type="java.lang.String" value="RUT :"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lbl_sexo">
           <Properties>
             <Property name="text" type="java.lang.String" value="Sexo :"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lbl_fechanac">
           <Properties>
             <Property name="text" type="java.lang.String" value="Fecha de Nacimiento :"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lbl_nacionalidad">
           <Properties>
             <Property name="text" type="java.lang.String" value="Nacionalidad :"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lbl_MostrarNombre">

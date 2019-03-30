@@ -209,20 +209,28 @@ public class Vista_Reserva extends javax.swing.JFrame {
         );
 
         pnl_mostrar.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos del titular"));
+        pnl_mostrar.setEnabled(false);
 
         lbl_nombre.setText("Nombre :");
+        lbl_nombre.setEnabled(false);
 
         lbl_apaterno.setText("Apellido Paterno :");
+        lbl_apaterno.setEnabled(false);
 
         lbl_amaterno.setText("Apellido Materno :");
+        lbl_amaterno.setEnabled(false);
 
         lbl_rut.setText("RUT :");
+        lbl_rut.setEnabled(false);
 
         lbl_sexo.setText("Sexo :");
+        lbl_sexo.setEnabled(false);
 
         lbl_fechanac.setText("Fecha de Nacimiento :");
+        lbl_fechanac.setEnabled(false);
 
         lbl_nacionalidad.setText("Nacionalidad :");
+        lbl_nacionalidad.setEnabled(false);
 
         lbl_MostrarNombre.setText(" ");
 
@@ -275,10 +283,10 @@ public class Vista_Reserva extends javax.swing.JFrame {
                     .addComponent(lbl_apaterno)
                     .addComponent(lbl_MostrarApellidoP))
                 .addGap(18, 18, 18)
-                .addGroup(pnl_mostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnl_mostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbl_amaterno)
-                    .addComponent(lbl_MostrarApellidoM))
-                .addGap(18, 18, 18)
+                    .addComponent(lbl_MostrarApellidoM, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnl_mostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_rut)
                     .addComponent(lbl_MostrarRUT))
@@ -374,8 +382,9 @@ public class Vista_Reserva extends javax.swing.JFrame {
         Modelo_Huesped modcli = new Modelo_Huesped();
         
         if(SQLCLI.verificarRUT(txtrut.getText())){
+            modcli.setRUT(txtrut.getText());
             habilitarTexto();
-            SQLCLI.mostrarCliente(txtrut.getText());
+            SQLCLI.mostrarCliente(modcli);
             lbl_MostrarNombre.setText(modcli.getNOMBRE());
             lbl_MostrarApellidoP.setText(modcli.getAPELLIDOP());
             lbl_MostrarApellidoM.setText(modcli.getAPELLIDOM());
@@ -538,6 +547,7 @@ public void bloquearTexto(){
     lbl_rut.setEnabled(false);
     lbl_fechanac.setEnabled(false);
     lbl_nacionalidad.setEnabled(false);
+    lbl_sexo.setEnabled(false);
     lbl_MostrarNombre.setEnabled(false);
     lbl_MostrarApellidoP.setEnabled(false);
     lbl_MostrarApellidoM.setEnabled(false);
@@ -555,6 +565,7 @@ public void habilitarTexto(){
     lbl_rut.setEnabled(true);
     lbl_fechanac.setEnabled(true);
     lbl_nacionalidad.setEnabled(true);
+    lbl_sexo.setEnabled(true);
     lbl_MostrarNombre.setEnabled(true);
     lbl_MostrarApellidoP.setEnabled(true);
     lbl_MostrarApellidoM.setEnabled(true);

@@ -1,6 +1,7 @@
 package Controlador;
 
 import Modelo.Modelo_Huesped;
+import Vista.Vista_Reserva;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -43,12 +44,11 @@ public class SQL_Huesped extends Database{
         }
     }
     
-    public boolean mostrarCliente(String RUT) {
-         Modelo_Huesped modcli = new Modelo_Huesped();
-         try {
+    public boolean mostrarCliente(Modelo_Huesped modcli) {
+        try {
          PreparedStatement pstm;
          pstm = this.getConexion().prepareStatement( "select RUT_CLIENTE,VERIF,NOMBRES,AP_PATERNO,AP_MATERNO,SEXO,FECHA_NAC,NACIONALIDAD from cliente where RUT_CLIENTE=?;");   
-         pstm.setString(1, RUT);
+         pstm.setString(1, modcli.getRUT());
          ResultSet res = pstm.executeQuery();
          
          if(res.next()){
