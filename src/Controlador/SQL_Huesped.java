@@ -14,7 +14,7 @@ public class SQL_Huesped extends Database{
     }
     public boolean InsertarCliente(Modelo_Huesped huesped) {
         try {
-         String query = "INSERT INTO `hotel`.`cliente` (`RUT_CLIENTE`, `VERIF`, `NOMBRES`, `AP_PATERNO`, `AP_MATERNO`, `SEXO`, `FECHA_NAC`, `NACIONALIDAD`) VALUES ('"+huesped.getRUT()+"', '"+huesped.getDIGITOV()+"', '"+huesped.getNOMBRE()+"', '"+huesped.getAPELLIDOP()+"', '"+huesped.getAPELLIDOM()+"', '"+huesped.getSEXO()+"', '"+huesped.getFECHANAC()+"', '"+huesped.getNACIONALIDAD()+"');";
+         String query = "INSERT INTO HUESPED (`RUT`, `DIGITOV`, `NOMBRE`, `APELLIDO_P`, `APELLIDO_M`, `SEXO`, `FECHANAC`, `NACIONALIDAD`) VALUES ('"+huesped.getRUT()+"', '"+huesped.getDIGITOV()+"', '"+huesped.getNOMBRE()+"', '"+huesped.getAPELLIDOP()+"', '"+huesped.getAPELLIDOM()+"', '"+huesped.getSEXO()+"', '"+huesped.getFECHANAC()+"', '"+huesped.getNACIONALIDAD()+"');";
          PreparedStatement pstm = this .getConexion().prepareStatement(query);
          pstm.executeUpdate();
          pstm.close();
@@ -27,7 +27,7 @@ public class SQL_Huesped extends Database{
     
     public boolean ModificarCliente(Modelo_Huesped huesped) {
         try {
-         String query = "UPDATE cliente SET RUT_CLIENTE='"+huesped.getRUT()+"', VERIF='"+huesped.getDIGITOV()+"', NOMBRES='"+huesped.getNOMBRE()+"', AP_PATERNO='"+huesped.getAPELLIDOP()+"', AP_MATERNO='"+huesped.getAPELLIDOM()+"', SEXO='"+huesped.getSEXO()+"', FECHA_NAC='"+huesped.getFECHANAC()+"', NACIONALIDAD='"+huesped.getNACIONALIDAD()+"' WHERE RUT_CLIENTE='"+huesped.getRUT()+"';";
+         String query = "UPDATE HUESPED SET RUT='"+huesped.getRUT()+"', DIGITOV='"+huesped.getDIGITOV()+"', NOMBRE='"+huesped.getNOMBRE()+"', APELLIDO_P='"+huesped.getAPELLIDOP()+"', APELLIDO_M='"+huesped.getAPELLIDOM()+"', SEXO='"+huesped.getSEXO()+"', FECHANAC='"+huesped.getFECHANAC()+"', NACIONALIDAD='"+huesped.getNACIONALIDAD()+"' WHERE RUT_CLIENTE='"+huesped.getRUT()+"';";
          PreparedStatement pstm = this .getConexion().prepareStatement(query);
          pstm.executeUpdate();
          pstm.close();
@@ -40,7 +40,7 @@ public class SQL_Huesped extends Database{
     
     public boolean EliminarCliente(Modelo_Huesped huesped) {
         try {
-         String query = "DELETE FROM cliente WHERE RUT_CLIENTE='"+huesped.getRUT()+"';";
+         String query = "DELETE FROM HUESPED WHERE RUT='"+huesped.getRUT()+"';";
          PreparedStatement pstm = this .getConexion().prepareStatement(query);
          pstm.executeUpdate();
          pstm.close();
@@ -51,22 +51,22 @@ public class SQL_Huesped extends Database{
         }
     }
       
-    public boolean mostrarCliente(Modelo_Huesped modcli) {
+    public boolean mostrarCliente(Modelo_Huesped huesped) {
         try {
          PreparedStatement pstm;
-         pstm = this.getConexion().prepareStatement( "select RUT_CLIENTE,VERIF,NOMBRES,AP_PATERNO,AP_MATERNO,SEXO,FECHA_NAC,NACIONALIDAD from cliente where RUT_CLIENTE=?;");   
-         pstm.setString(1, modcli.getRUT());
+         pstm = this.getConexion().prepareStatement( "select RUT,DIGITOV,NOMBRE,APELLIDO_P,APELLIDO_M,SEXO,FECHANAC,NACIONALIDAD from HUESPED where RUT=?;");   
+         pstm.setString(1, huesped.getRUT());
          ResultSet res = pstm.executeQuery();
          
          if(res.next()){
-             modcli.setRUT(res.getString("RUT_CLIENTE"));
-             modcli.setDIGITOV(res.getString("VERIF"));
-             modcli.setNOMBRE(res.getString("NOMBRES"));
-             modcli.setAPELLIDOP(res.getString("AP_PATERNO"));
-             modcli.setAPELLIDOM(res.getString("AP_MATERNO"));
-             modcli.setSEXO(res.getString("SEXO"));
-             modcli.setFECHANAC(res.getDate("FECHA_NAC"));
-             modcli.setNACIONALIDAD(res.getString("NACIONALIDAD"));
+             huesped.setRUT(res.getString("RUT"));
+             huesped.setDIGITOV(res.getString("DIGITOV"));
+             huesped.setNOMBRE(res.getString("NOMBRE"));
+             huesped.setAPELLIDOP(res.getString("APELLIDO_P"));
+             huesped.setAPELLIDOM(res.getString("APELLIDO_P"));
+             huesped.setSEXO(res.getString("SEXO"));
+             huesped.setFECHANAC(res.getDate("FECHANAC"));
+             huesped.setNACIONALIDAD(res.getString("NACIONALIDAD"));
              res.close();
              pstm.close();
              return true;
@@ -83,7 +83,7 @@ public class SQL_Huesped extends Database{
     public boolean verificarRUT(String RUT) {
          try {
          String s = "";
-         PreparedStatement pstm = this.getConexion().prepareStatement( "select RUT_CLIENTE from cliente where RUT_CLIENTE='"+RUT+"';");
+         PreparedStatement pstm = this.getConexion().prepareStatement( "select RUT from HUESPED where RUT='"+RUT+"';");
          ResultSet res = pstm.executeQuery();
          
          if(res.next()){
