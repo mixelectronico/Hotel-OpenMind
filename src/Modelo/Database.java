@@ -3,7 +3,7 @@ import java.sql.*;
 public class Database {
  /* DATOS PARA LA CONEXION */
   /** base de datos por defecto es test*/
-  public String db = "hotel?useTimezone=true&serverTimezone=UTC";
+  public String db = "openmind?useTimezone=true&serverTimezone=UTC";
   /** usuario */
   public String user = "root";
   /** contraseña de MySql*/
