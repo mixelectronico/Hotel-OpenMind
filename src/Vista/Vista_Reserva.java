@@ -118,7 +118,6 @@ public class Vista_Reserva extends javax.swing.JFrame {
 
         jLabel5.setText("Habitación:");
 
-        combohabit.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "H1", "H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10", "H11" }));
         combohabit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 combohabitActionPerformed(evt);

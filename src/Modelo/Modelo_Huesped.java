@@ -13,7 +13,11 @@ public class Modelo_Huesped {
     private String SEXO;
     private String NACIONALIDAD;
     private Date FECHANAC;
-
+    
+    public Modelo_Huesped(){
+        
+    }
+    
     public int getID_HUESPED() {
         return ID_HUESPED;
     }

@@ -6,7 +6,7 @@ public class Modelo_Habitacion {
     private String NOMBRE_HABITACION;
     private int PRECIO_MOMENTO;
     private int PRECIO_JORNADA;
-    private int ESTADO_HABITACION;
+    private String ESTADO_HABITACION;
 
     public int getID_HABITACION() {
         return ID_HABITACION;
@@ -40,11 +40,11 @@ public class Modelo_Habitacion {
         this.PRECIO_JORNADA = PRECIO_JORNADA;
     }
 
-    public int getESTADO_HABITACION() {
+    public String getESTADO_HABITACION() {
         return ESTADO_HABITACION;
     }
 
-    public void setESTADO_HABITACION(int ESTADO_HABITACION) {
+    public void setESTADO_HABITACION(String ESTADO_HABITACION) {
         this.ESTADO_HABITACION = ESTADO_HABITACION;
     }
     
