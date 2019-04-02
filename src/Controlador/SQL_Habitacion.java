@@ -5,6 +5,7 @@ import Modelo.Modelo_Habitacion;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
 import modelo.Database;
 
 
@@ -52,7 +53,7 @@ public class SQL_Habitacion extends Database{
     public boolean mostrarHabitacion(Modelo_Habitacion habitacion) {
         try {
          PreparedStatement pstm;
-         pstm = this.getConexion().prepareStatement( "select RUT,DIGITOV,NOMBRE,APELLIDO_P,APELLIDO_M,SEXO,FECHANAC,NACIONALIDAD from HUESPED where RUT=?;");   
+         pstm = this.getConexion().prepareStatement( "select ID_HABITACION,NOMBRE_HABITACION,PRECIO_M,PRECIO_J,ESTADO_HABITACION from HABITACION where NOMBRE_HABITACION=?;");   
          pstm.setString(1, habitacion.getNOMBRE_HABITACION());
          ResultSet res = pstm.executeQuery();
          
@@ -74,4 +75,23 @@ public class SQL_Habitacion extends Database{
         } 
         return false;
     } 
+    
+    public void listarHabitaciones(LinkedList<String> Habitaciones) {
+        try {
+         PreparedStatement pstm;
+         pstm = this.getConexion().prepareStatement( "select NOMBRE_HABITACION from HABITACION");
+         ResultSet res = pstm.executeQuery();
+         
+         Habitaciones.add("Seleccionar");
+         while(res.next()){
+             Habitaciones.add(res.getString("NOMBRE_HABITACION")); 
+         }
+         res.close();
+         pstm.close(); 
+        } catch (Exception e) {
+            e.printStackTrace();  
+            System.out.println(e);
+        } 
+    }
+    
 }

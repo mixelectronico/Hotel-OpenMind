@@ -8,6 +8,24 @@ public class Modelo_Reserva {
     private String ESTADO_RESERVA;
     private Date FECHA_RESERVA;
     private String RUT_TITULAR;
+    private int ID_HABITACION;
+    private String MODALIDAD_RESERVA;
+
+    public int getID_HABITACION() {
+        return ID_HABITACION;
+    }
+
+    public void setID_HABITACION(int ID_HABITACION) {
+        this.ID_HABITACION = ID_HABITACION;
+    }
+
+    public String getMODALIDAD_RESERVA() {
+        return MODALIDAD_RESERVA;
+    }
+
+    public void setMODALIDAD_RESERVA(String MODALIDAD_RESERVA) {
+        this.MODALIDAD_RESERVA = MODALIDAD_RESERVA;
+    }
 
     public int getID_RESERVA() {
         return ID_RESERVA;

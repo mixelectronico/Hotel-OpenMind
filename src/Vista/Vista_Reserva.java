@@ -1,8 +1,11 @@
 
 package Vista;
 
+import Controlador.SQL_Habitacion;
 import Controlador.SQL_Huesped;
+import Modelo.Modelo_Habitacion;
 import Modelo.Modelo_Huesped;
+import java.util.LinkedList;
 import javax.swing.JOptionPane;
 
 public class Vista_Reserva extends javax.swing.JFrame {
@@ -10,6 +13,7 @@ public class Vista_Reserva extends javax.swing.JFrame {
     public Vista_Reserva() {
         initComponents();
         bloquearTexto();
+        llenarCBXhabitacion();
     }
 
     @SuppressWarnings("unchecked")
@@ -25,15 +29,13 @@ public class Vista_Reserva extends javax.swing.JFrame {
         txtverif = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         txtidreserva = new javax.swing.JTextField();
-        pnl_formulario = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        combohabit = new javax.swing.JComboBox<>();
-        combocantpasaj = new javax.swing.JComboBox<>();
-        jLabel7 = new javax.swing.JLabel();
-        combotpoocup = new javax.swing.JComboBox<>();
-        jLabel11 = new javax.swing.JLabel();
-        btnGuardar = new javax.swing.JButton();
-        btnCancelar = new javax.swing.JButton();
+        pnl_reserva = new javax.swing.JPanel();
+        lbl_Habitacion = new javax.swing.JLabel();
+        cbx_habitaciones = new javax.swing.JComboBox<>();
+        cbx_Modalidad = new javax.swing.JComboBox<>();
+        lbl_Modalidad = new javax.swing.JLabel();
+        btn_Guardar = new javax.swing.JButton();
+        btn_Cancelar = new javax.swing.JButton();
         pnl_mostrar = new javax.swing.JPanel();
         lbl_nombre = new javax.swing.JLabel();
         lbl_apaterno = new javax.swing.JLabel();
@@ -92,7 +94,7 @@ public class Vista_Reserva extends javax.swing.JFrame {
                         .addComponent(jLabel15)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtverif, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,103 +110,86 @@ public class Vista_Reserva extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        txtidreserva.setEditable(false);
         txtidreserva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtidreservaActionPerformed(evt);
             }
         });
 
-        pnl_formulario.setBorder(javax.swing.BorderFactory.createTitledBorder("Información Reserva"));
+        pnl_reserva.setBorder(javax.swing.BorderFactory.createTitledBorder("Información Reserva"));
+        pnl_reserva.setEnabled(false);
 
-        jLabel5.setText("Habitación:");
+        lbl_Habitacion.setText("Habitación :");
+        lbl_Habitacion.setEnabled(false);
 
-        combohabit.addActionListener(new java.awt.event.ActionListener() {
+        cbx_habitaciones.setEnabled(false);
+        cbx_habitaciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                combohabitActionPerformed(evt);
+                cbx_habitacionesActionPerformed(evt);
             }
         });
 
-        combocantpasaj.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2", "3", "4", "5", "6", "7" }));
-        combocantpasaj.addActionListener(new java.awt.event.ActionListener() {
+        cbx_Modalidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Momento", "Jornada" }));
+        cbx_Modalidad.setEnabled(false);
+        cbx_Modalidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                combocantpasajActionPerformed(evt);
+                cbx_ModalidadActionPerformed(evt);
             }
         });
 
-        jLabel7.setText("Total de Huéspedes :");
+        lbl_Modalidad.setText("Modalidad :");
+        lbl_Modalidad.setEnabled(false);
 
-        combotpoocup.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Momento", "Jornada" }));
-        combotpoocup.addActionListener(new java.awt.event.ActionListener() {
+        btn_Guardar.setText("GUARDAR");
+        btn_Guardar.setEnabled(false);
+        btn_Guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                combotpoocupActionPerformed(evt);
+                btn_GuardarActionPerformed(evt);
             }
         });
 
-        jLabel11.setText("Modalidad :");
-
-        btnGuardar.setText("GUARDAR");
-        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+        btn_Cancelar.setText("CANCELAR");
+        btn_Cancelar.setEnabled(false);
+        btn_Cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarActionPerformed(evt);
+                btn_CancelarActionPerformed(evt);
             }
         });
 
-        btnCancelar.setText("CANCELAR");
-        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pnl_formularioLayout = new javax.swing.GroupLayout(pnl_formulario);
-        pnl_formulario.setLayout(pnl_formularioLayout);
-        pnl_formularioLayout.setHorizontalGroup(
-            pnl_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl_formularioLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnl_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnl_formularioLayout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(combocantpasaj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_formularioLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(pnl_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnGuardar)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(pnl_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnl_formularioLayout.createSequentialGroup()
-                                .addGroup(pnl_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(combohabit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(combotpoocup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_formularioLayout.createSequentialGroup()
-                                .addComponent(btnCancelar)
-                                .addContainerGap())))))
-        );
-        pnl_formularioLayout.setVerticalGroup(
-            pnl_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl_formularioLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnl_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(combohabit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pnl_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(combocantpasaj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(4, 4, 4)
-                .addGroup(pnl_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(combotpoocup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        javax.swing.GroupLayout pnl_reservaLayout = new javax.swing.GroupLayout(pnl_reserva);
+        pnl_reserva.setLayout(pnl_reservaLayout);
+        pnl_reservaLayout.setHorizontalGroup(
+            pnl_reservaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_reservaLayout.createSequentialGroup()
+                .addContainerGap(37, Short.MAX_VALUE)
+                .addGroup(pnl_reservaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lbl_Habitacion)
+                    .addComponent(lbl_Modalidad)
+                    .addComponent(btn_Guardar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnl_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnGuardar)
-                    .addComponent(btnCancelar))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addGroup(pnl_reservaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cbx_Modalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbx_habitaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_Cancelar))
+                .addGap(33, 33, 33))
+        );
+        pnl_reservaLayout.setVerticalGroup(
+            pnl_reservaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_reservaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnl_reservaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_Habitacion)
+                    .addComponent(cbx_habitaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnl_reservaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbx_Modalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_Modalidad))
+                .addGap(18, 18, 18)
+                .addGroup(pnl_reservaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_Guardar)
+                    .addComponent(btn_Cancelar))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pnl_mostrar.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos del titular"));
@@ -312,18 +297,23 @@ public class Vista_Reserva extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(pnl_formulario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtidreserva, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(pnl_mostrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(pnl_reserva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pnl_mostrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
+                        .addGap(82, 82, 82)
                         .addComponent(jLabel8)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtidreserva, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(148, 148, 148))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -334,8 +324,8 @@ public class Vista_Reserva extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(pnl_formulario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pnl_reserva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(pnl_mostrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -351,26 +341,22 @@ public class Vista_Reserva extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtverifActionPerformed
 
-    private void combohabitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combohabitActionPerformed
+    private void cbx_habitacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbx_habitacionesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_combohabitActionPerformed
+    }//GEN-LAST:event_cbx_habitacionesActionPerformed
 
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+    private void btn_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_GuardarActionPerformed
      
 
-    }//GEN-LAST:event_btnGuardarActionPerformed
+    }//GEN-LAST:event_btn_GuardarActionPerformed
 
-    private void combocantpasajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combocantpasajActionPerformed
+    private void cbx_ModalidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbx_ModalidadActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_combocantpasajActionPerformed
+    }//GEN-LAST:event_cbx_ModalidadActionPerformed
 
-    private void combotpoocupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combotpoocupActionPerformed
+    private void btn_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CancelarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_combotpoocupActionPerformed
-
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCancelarActionPerformed
+    }//GEN-LAST:event_btn_CancelarActionPerformed
 
     private void txtidreservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidreservaActionPerformed
         // TODO add your handling code here:
@@ -503,20 +489,18 @@ public class Vista_Reserva extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton btnCancelar;
-    public javax.swing.JButton btnGuardar;
-    public javax.swing.JComboBox<String> combocantpasaj;
-    public javax.swing.JComboBox<String> combohabit;
-    public javax.swing.JComboBox<String> combotpoocup;
+    public javax.swing.JButton btn_Cancelar;
+    public javax.swing.JButton btn_Guardar;
+    public javax.swing.JComboBox<String> cbx_Modalidad;
+    public javax.swing.JComboBox<String> cbx_habitaciones;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lbl_Habitacion;
+    private javax.swing.JLabel lbl_Modalidad;
     private javax.swing.JLabel lbl_MostrarApellidoM;
     private javax.swing.JLabel lbl_MostrarApellidoP;
     private javax.swing.JLabel lbl_MostrarFechaNacimiento;
@@ -531,8 +515,8 @@ public class Vista_Reserva extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_nombre;
     private javax.swing.JLabel lbl_rut;
     private javax.swing.JLabel lbl_sexo;
-    private javax.swing.JPanel pnl_formulario;
     private javax.swing.JPanel pnl_mostrar;
+    private javax.swing.JPanel pnl_reserva;
     public javax.swing.JTextField txtidreserva;
     public javax.swing.JTextField txtrut;
     private javax.swing.JTextField txtverif;
@@ -554,6 +538,13 @@ public void bloquearTexto(){
     lbl_MostrarSexo.setEnabled(false);
     lbl_MostrarFechaNacimiento.setEnabled(false);
     lbl_MostrarNacionalidad.setEnabled(false);
+    pnl_reserva.setEnabled(false);
+    lbl_Habitacion.setEnabled(false);
+    cbx_habitaciones.setEnabled(false);
+    lbl_Modalidad.setEnabled(false);
+    cbx_Modalidad.setEnabled(false);
+    btn_Guardar.setEnabled(false);
+    btn_Cancelar.setEnabled(false);
 }
 
 public void habilitarTexto(){
@@ -572,6 +563,23 @@ public void habilitarTexto(){
     lbl_MostrarSexo.setEnabled(true);
     lbl_MostrarFechaNacimiento.setEnabled(true);
     lbl_MostrarNacionalidad.setEnabled(true);
+    pnl_reserva.setEnabled(true);
+    lbl_Habitacion.setEnabled(true);
+    cbx_habitaciones.setEnabled(true);
+    lbl_Modalidad.setEnabled(true);
+    cbx_Modalidad.setEnabled(true);
+    btn_Guardar.setEnabled(true);
+    btn_Cancelar.setEnabled(true);
+}
+
+public void llenarCBXhabitacion() {
+    SQL_Habitacion SQLHAB = new SQL_Habitacion();
+    Modelo_Habitacion modHab = new Modelo_Habitacion();
+    LinkedList<String> Habitaciones = new LinkedList<String>();
+    SQLHAB.listarHabitaciones(Habitaciones);
+    for (int i=0;i<Habitaciones.size();i++){
+        cbx_habitaciones.addItem(Habitaciones.get(i));
+    }
 }
 
 }
